@@ -126,9 +126,7 @@ pub fn msgReceiverLoop() {
             if (*message.senderName).length > 0 {
                 clprintf(format!("Sender Name   : {}\n", String::from_utf8_lossy(&(*message.senderName).value)));
             }
-            let len = libc::strlen(message.data as *const libc::c_char);
-            let slice = std::slice::from_raw_parts(message.data as *const u8, len);
-            let string_data = String::from_utf8_lossy(slice);
+            let string_data = String::from_utf8_lossy(&data);
             clprintf(format!("Received Message  : {}\n", string_data));
         }
     }
